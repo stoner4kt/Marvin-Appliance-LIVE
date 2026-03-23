@@ -1188,3 +1188,235 @@ ul, ol {
         aspect-ratio: 1;
     }
 }
+
+
+.hero-badges,
+.hero-actions,
+.info-grid,
+.booking-highlights,
+.contact-banner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.hero-badges {
+    justify-content: center;
+    margin-bottom: var(--space-3);
+}
+
+.hero-badge {
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    padding: 0.65rem 1rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+}
+
+.hero-actions {
+    justify-content: center;
+}
+
+.cta-button-secondary {
+    background: transparent;
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: none;
+}
+
+.cta-button-secondary:hover,
+.cta-button-secondary:focus {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+}
+
+.service-card-accent {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+}
+
+.service-card-accent-dark {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+    color: var(--white);
+}
+
+.service-card-accent h3,
+.service-card-accent-dark h3,
+.service-card-accent p,
+.service-card-accent-dark p {
+    color: var(--white);
+}
+
+.service-link-light {
+    color: var(--accent-light);
+}
+
+.service-icon-accent {
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--white);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    margin-top: var(--space-4);
+}
+
+.info-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-light);
+}
+
+.info-card h3 {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-lg);
+}
+
+.compact-list {
+    display: grid;
+    gap: 0.85rem;
+    color: var(--secondary);
+}
+
+.compact-list li {
+    position: relative;
+    padding-left: 1.35rem;
+    line-height: 1.6;
+}
+
+.compact-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.section-shell {
+    display: grid;
+    gap: var(--space-5);
+}
+
+.page-intro {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.page-intro p {
+    color: var(--secondary);
+    font-size: var(--text-base);
+}
+
+.booking-panel {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+}
+
+.booking-title,
+.booking-copy {
+    text-align: center;
+}
+
+.booking-copy {
+    color: var(--secondary);
+    margin: 0.5rem auto 0;
+    max-width: 60ch;
+}
+
+.booking-highlights {
+    justify-content: center;
+    margin: var(--space-4) 0;
+}
+
+.booking-highlights span {
+    background: var(--lighter);
+    color: var(--dark);
+    border-radius: 999px;
+    padding: 0.65rem 0.9rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+.service-card-centered {
+    text-align: center;
+}
+
+.centered-icon {
+    margin: 0 auto var(--space-3);
+}
+
+.contact-banner {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    border-radius: 24px;
+    padding: var(--space-5);
+    display: grid;
+    gap: var(--space-4);
+    box-shadow: var(--shadow-lg);
+}
+
+.contact-banner h2,
+.contact-banner p {
+    color: var(--white);
+}
+
+.contact-banner p {
+    opacity: 0.92;
+}
+
+.contact-banner-label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--text-xs);
+    color: var(--accent-light) !important;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.contact-banner-actions {
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-banner {
+        grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+        align-items: center;
+    }
+}
+
+@media (min-width: 1024px) {
+    .info-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-actions .cta-button,
+    .contact-banner-actions .cta-button {
+        width: 100%;
+    }
+
+    .booking-panel {
+        padding: var(--space-4) !important;
+    }
+
+    .service-card,
+    .info-card,
+    .contact-banner {
+        border-radius: 18px;
+    }
+}
