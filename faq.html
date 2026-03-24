@@ -85,7 +85,331 @@
             </div>
         </section>
     </main>
+<!-- ============================================================
+     BRANDS WE SERVICE — Logo Carousel
+     Copy-paste this entire block into any page,
+     just before </main> or wherever you want it.
+     ============================================================ -->
 
+<section id="brands-we-service" aria-label="Brands we repair and service" style="
+  /* Scope: all styles are inline or scoped by #brands-we-service so they
+     cannot collide with any existing rule in styles.css */
+  background: var(--white, #ffffff);
+  border-top: 1px solid var(--border, #e2e8f0);
+  border-bottom: 1px solid var(--border, #e2e8f0);
+  padding: clamp(2rem, 5vw, 3.5rem) 0;
+  overflow: hidden;
+  /* Prevent the scrolling track from bleeding out */
+  contain: layout style;
+">
+
+  <!-- Section heading -->
+  <div style="
+    text-align: center;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  ">
+    <p style="
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: clamp(0.7rem, 2vw, 0.8rem);
+      font-weight: 700;
+      color: var(--primary, #2563eb);
+      margin-bottom: 0.5rem;
+    ">Trusted Brands</p>
+    <h2 style="
+      font-size: clamp(1.35rem, 4vw, 2rem);
+      font-weight: 800;
+      color: var(--dark, #1e293b);
+      margin: 0 0 0.5rem;
+      line-height: 1.25;
+    ">Brands We Repair &amp; Service</h2>
+    <p style="
+      color: var(--secondary, #64748b);
+      font-size: clamp(0.875rem, 2.5vw, 1rem);
+      max-width: 52ch;
+      margin: 0 auto;
+      line-height: 1.6;
+    ">Expert repairs across the major appliance brands South African homes trust most.</p>
+  </div>
+
+  <!-- ── Carousel wrapper ── -->
+  <!-- Role=region + aria-label makes it a landmark; tabindex lets keyboard users focus it -->
+  <div
+    id="bws-track-outer"
+    role="region"
+    aria-label="Scrolling brand logos"
+    tabindex="0"
+    style="
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      /* Edge fade masks */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      /* Keyboard focus ring */
+      outline-offset: 3px;
+    "
+    aria-roledescription="carousel"
+  >
+    <!-- The moving strip; duplicated for seamless loop -->
+    <div id="bws-track" style="
+      display: flex;
+      align-items: center;
+      width: max-content;
+      /* animation defined in <style> block below */
+      animation: bws-scroll 28s linear infinite;
+      will-change: transform;
+    ">
+
+      <!-- ── Slot A (original set) ── -->
+      <div class="bws-logo-item" aria-hidden="false">
+        <img src="assets/logos/Bosch.png"
+             alt="Bosch"
+             loading="lazy"
+             decoding="async"
+             width="240" height="54"
+             style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+      <div class="bws-logo-item" aria-hidden="false">
+        <img src="assets/logos/Samsung.png"
+             alt="Samsung"
+             loading="lazy"
+             decoding="async"
+             width="240" height="37"
+             style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+      <div class="bws-logo-item" aria-hidden="false">
+        <img src="assets/logos/LG.png"
+             alt="LG"
+             loading="lazy"
+             decoding="async"
+             width="125" height="120"
+             style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+      <div class="bws-logo-item" aria-hidden="false">
+        <img src="assets/logos/Whirlpool_Corporation.png"
+             alt="Whirlpool"
+             loading="lazy"
+             decoding="async"
+             width="240" height="80"
+             style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+      <div class="bws-logo-item" aria-hidden="false">
+        <img src="assets/logos/defy.png"
+             alt="Defy"
+             loading="lazy"
+             decoding="async"
+             width="240" height="89"
+             style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+      <div class="bws-logo-item" aria-hidden="false">
+        <img src="assets/logos/hisense.png"
+             alt="Hisense"
+             loading="lazy"
+             decoding="async"
+             width="120" height="120"
+             style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+
+      <!-- ── Slot B (exact duplicate — aria-hidden so screen readers skip it) ── -->
+      <div class="bws-logo-item" aria-hidden="true">
+        <img src="assets/logos/Bosch.png"      alt="" loading="lazy" decoding="async" width="240" height="54"  style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+      <div class="bws-logo-item" aria-hidden="true">
+        <img src="assets/logos/Samsung.png"    alt="" loading="lazy" decoding="async" width="240" height="37"  style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+      <div class="bws-logo-item" aria-hidden="true">
+        <img src="assets/logos/LG.png"         alt="" loading="lazy" decoding="async" width="125" height="120" style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+      <div class="bws-logo-item" aria-hidden="true">
+        <img src="assets/logos/Whirlpool_Corporation.png" alt="" loading="lazy" decoding="async" width="240" height="80"  style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+      <div class="bws-logo-item" aria-hidden="true">
+        <img src="assets/logos/defy.png"       alt="" loading="lazy" decoding="async" width="240" height="89"  style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+      <div class="bws-logo-item" aria-hidden="true">
+        <img src="assets/logos/hisense.png"    alt="" loading="lazy" decoding="async" width="120" height="120" style="height:clamp(54px,8vw,90px);width:auto;max-width:none;">
+      </div>
+
+    </div><!-- /bws-track -->
+  </div><!-- /bws-track-outer -->
+
+  <!-- Disclaimer -->
+  <p style="
+    text-align: center;
+    max-width: 70ch;
+    margin: clamp(1.25rem, 3vw, 2rem) auto 0;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+    font-size: clamp(0.72rem, 2vw, 0.8rem);
+    color: var(--secondary, #64748b);
+    line-height: 1.65;
+    font-style: italic;
+    opacity: 0.85;
+  ">
+    We repair and service appliances from these leading brands. We are an independent repair service and are not officially affiliated, authorized, or endorsed by any of these manufacturers.
+  </p>
+
+</section>
+<!-- /brands-we-service -->
+
+
+<!-- ─────────────────────────────────────────────────────────
+     Scoped styles for the carousel.
+     Place this <style> block ONCE on any page that uses the section.
+     Using the #brands-we-service prefix ensures zero collision.
+     ───────────────────────────────────────────────────────── -->
+<style>
+/* ── Logo item pill ── */
+#brands-we-service .bws-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
+  margin: 0 clamp(0.5rem, 1.5vw, 1rem);
+  background: var(--lighter, #f1f5f9);
+  border-radius: 16px;
+  border: 1px solid var(--border, #e2e8f0);
+  min-height: clamp(88px, 14vw, 130px);
+  min-width: clamp(140px, 20vw, 220px);
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  flex-shrink: 0;
+}
+
+#brands-we-service .bws-logo-item img {
+  /* Let the height drive size; width is auto */
+  display: block;
+  height: clamp(54px, 8vw, 90px);
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  /* Crisp on retina */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Dark logos pop on light backgrounds; filter neutral — only active in dark mode */
+@media (prefers-color-scheme: dark) {
+  #brands-we-service .bws-logo-item img {
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+  }
+  #brands-we-service .bws-logo-item {
+    background: var(--lighter, #1e293b);
+    border-color: var(--border, #334155);
+  }
+}
+
+/* Hover / focus lift (skip on touch-only devices) */
+@media (hover: hover) {
+  #brands-we-service .bws-logo-item:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    background: var(--white, #ffffff);
+  }
+}
+
+/* ── Scroll animation ── */
+@keyframes bws-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+  /* -50% because the track contains 2 identical sets; moving by exactly
+     one set width creates a perfect seamless loop */
+}
+
+/* Pause on hover over the outer wrapper */
+#bws-track-outer:hover #bws-track,
+#bws-track-outer:focus-within #bws-track {
+  animation-play-state: paused;
+}
+
+/* Honour reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  #bws-track {
+    animation: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100% !important;
+  }
+  #bws-track-outer {
+    -webkit-mask-image: none !important;
+            mask-image: none !important;
+  }
+}
+
+/* Focus ring for keyboard users */
+#bws-track-outer:focus-visible {
+  outline: 3px solid var(--accent, #f59e0b);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+</style>
+
+
+<!-- ─────────────────────────────────────────────────────────
+     Tiny vanilla JS — touch-swipe support + dynamic pause.
+     Runs once on DOMContentLoaded; no globals polluted.
+     ───────────────────────────────────────────────────────── -->
+<script>
+(function () {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var outer = document.getElementById('bws-track-outer');
+    var track = document.getElementById('bws-track');
+    if (!outer || !track) return;
+
+    /* ── Touch swipe: pause while finger is down ── */
+    var touchStartX = 0;
+    var isPaused    = false;
+
+    outer.addEventListener('touchstart', function (e) {
+      touchStartX = e.touches[0].clientX;
+      track.style.animationPlayState = 'paused';
+      isPaused = true;
+    }, { passive: true });
+
+    outer.addEventListener('touchend', function (e) {
+      var diff = e.changedTouches[0].clientX - touchStartX;
+      /* Optional: nudge animation offset for a swipe feel — kept minimal
+         to avoid complexity; just resume after a short delay */
+      setTimeout(function () {
+        if (isPaused) {
+          track.style.animationPlayState = 'running';
+          isPaused = false;
+        }
+      }, 800);
+    }, { passive: true });
+
+    /* ── Keyboard: space/enter to toggle pause while section is focused ── */
+    outer.addEventListener('keydown', function (e) {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        isPaused = !isPaused;
+        track.style.animationPlayState = isPaused ? 'paused' : 'running';
+        outer.setAttribute('aria-label',
+          isPaused
+            ? 'Scrolling brand logos — paused. Press Space to resume.'
+            : 'Scrolling brand logos — playing. Press Space to pause.'
+        );
+      }
+    });
+
+    /* ── Intersection Observer: stop animation when off-screen (perf) ── */
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!isPaused) {
+            track.style.animationPlayState =
+              entry.isIntersecting ? 'running' : 'paused';
+          }
+        });
+      }, { threshold: 0 });
+      io.observe(outer);
+    }
+  });
+}());
+</script>
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
