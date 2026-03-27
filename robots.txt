@@ -1,0 +1,15 @@
+# robots.txt for https://marvinsappliancerepairs.co.za/
+# Allow all major search engines and AI crawlers to index public content.
+
+User-agent: *
+Allow: /
+Disallow: /wp-admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+
+# WordPress compatibility if used in future
+Allow: /wp-admin/admin-ajax.php
+
+# Preferred sitemap
+Sitemap: https://marvinsappliancerepairs.co.za/sitemap.xml
