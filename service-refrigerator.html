@@ -85,7 +85,7 @@
                     ✅ Booking received! We'll contact you shortly to confirm your appointment.
                 </div>
 
-                <form name="booking-refrigerator" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <form name="booking-refrigerator" method="POST" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
                     <input type="hidden" name="form-name" value="booking-refrigerator">
                     <input type="hidden" name="service" value="Fridge, Freezer & Ice Machine Repair">
                     <p style="display: none;"><input name="bot-field"></p>
@@ -97,7 +97,14 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="060 325 6033">
+                            <input type="tel" id="phone" name="phone" required inputmode="tel" autocomplete="tel" pattern="^\+?[0-9\s()-]{10,15}$" placeholder="+27 60 325 6033">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required autocomplete="email" placeholder="name@example.com">
                         </div>
                     </div>
 
