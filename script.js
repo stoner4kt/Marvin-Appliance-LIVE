@@ -247,9 +247,11 @@
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
+                this.clearErrors(form);
 
                 if (!form.checkValidity()) {
-                    form.reportValidity();
+                    const errors = this.getValidationErrors(form);
+                    this.renderValidationErrors(form, errors);
                     Utils.vibrate([50, 100, 50]);
                     return;
                 }
@@ -270,12 +272,116 @@
                     if (response.ok) {
                         this.handleSuccess(form, submitBtn, successMsg, originalText, inputs);
                     } else {
-                        throw new Error('Submission failed');
+                        throw new Error('We could not submit your booking right now. Please review your details and try again.');
                     }
                 } catch (error) {
-                    this.handleError(submitBtn, originalText, inputs);
+                    this.handleError(form, submitBtn, originalText, inputs, error.message);
                     console.error('Form error:', error);
                 }
+            });
+        },
+
+        getValidationErrors(form) {
+            const fields = form.querySelectorAll('input, select, textarea');
+            const errors = [];
+
+            fields.forEach((field, index) => {
+                if (field.willValidate && !field.checkValidity()) {
+                    const label = this.getFieldLabel(field, index + 1);
+                    let message = field.validationMessage;
+
+                    if (field.validity.valueMissing) {
+                        message = `Please enter ${label.toLowerCase()}.`;
+                    } else if (field.validity.typeMismatch && field.type === 'email') {
+                        message = 'Please enter a valid email address so we can contact you.';
+                    } else if (field.validity.patternMismatch && field.type === 'tel') {
+                        message = 'Please enter a valid phone number so we can call or WhatsApp you.';
+                    }
+
+                    errors.push({ field, label, message });
+                }
+            });
+
+            return errors;
+        },
+
+        getFieldLabel(field, fallbackIndex) {
+            const fieldId = field.id;
+            if (fieldId) {
+                const label = field.form?.querySelector(`label[for="${fieldId}"]`);
+                if (label) return label.textContent.trim();
+            }
+            return field.name || `field ${fallbackIndex}`;
+        },
+
+        renderValidationErrors(form, errors, summaryMessage) {
+            const summary = document.createElement('div');
+            summary.className = 'form-error-summary';
+            summary.setAttribute('role', 'alert');
+            summary.setAttribute('aria-live', 'assertive');
+            summary.style.background = 'rgba(220, 53, 69, 0.1)';
+            summary.style.border = '1px solid var(--error)';
+            summary.style.color = 'var(--error)';
+            summary.style.padding = '0.75rem';
+            summary.style.borderRadius = '8px';
+            summary.style.marginBottom = '1rem';
+            summary.style.fontSize = '0.95rem';
+
+            if (summaryMessage) {
+                summary.textContent = summaryMessage;
+            } else {
+                const intro = document.createElement('p');
+                intro.textContent = 'Please fix the following before submitting:';
+                intro.style.margin = '0 0 0.5rem 0';
+                intro.style.fontWeight = '600';
+                summary.appendChild(intro);
+
+                const list = document.createElement('ul');
+                list.style.margin = '0';
+                list.style.paddingLeft = '1rem';
+
+                errors.forEach(({ label, message }) => {
+                    const item = document.createElement('li');
+                    item.textContent = `${label}: ${message}`;
+                    list.appendChild(item);
+                });
+
+                summary.appendChild(list);
+            }
+
+            form.insertBefore(summary, form.firstChild);
+
+            errors.forEach(({ field, message }, index) => {
+                const fieldName = field.name || `field-${index}`;
+                const errorId = `${form.name || 'form'}-${fieldName}-error`;
+                const error = document.createElement('div');
+                error.id = errorId;
+                error.className = 'field-error-message';
+                error.textContent = message;
+                error.style.color = 'var(--error)';
+                error.style.fontSize = '0.875rem';
+                error.style.marginTop = '0.375rem';
+
+                field.style.borderColor = 'var(--error)';
+                field.setAttribute('aria-invalid', 'true');
+                field.setAttribute('aria-describedby', errorId);
+                field.insertAdjacentElement('afterend', error);
+            });
+
+            summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        },
+
+        clearErrors(form) {
+            const summary = form.querySelector('.form-error-summary');
+            if (summary) summary.remove();
+
+            form.querySelectorAll('.field-error-message').forEach(error => error.remove());
+
+            const fields = form.querySelectorAll('input, select, textarea');
+            fields.forEach(field => {
+                field.style.borderColor = '';
+                field.removeAttribute('aria-invalid');
+                field.removeAttribute('aria-describedby');
             });
         },
 
@@ -290,6 +396,7 @@
 
         handleSuccess(form, btn, successMsg, originalText, inputs) {
             Utils.vibrate([20, 100, 20]);
+            this.clearErrors(form);
 
             if (successMsg) {
                 successMsg.classList.add('show');
@@ -315,8 +422,9 @@
             }, 4000);
         },
 
-        handleError(btn, originalText, inputs) {
+        handleError(form, btn, originalText, inputs, message) {
             Utils.vibrate([100, 50, 100]);
+            this.renderValidationErrors(form, [], message || 'Something went wrong while sending your booking. Please try again in a moment.');
 
             if (btn) {
                 btn.textContent = '❌ Error. Retry?';
