@@ -244,6 +244,17 @@
             const submitBtn = form.querySelector('.submit-btn');
             const successMsg = form.querySelector('.success-message');
             const originalText = submitBtn?.textContent || 'Submit';
+            const successRedirect = form.getAttribute('action') || '/thank-you.html';
+
+            form.querySelectorAll('input[type="tel"]').forEach(phoneField => {
+                phoneField.addEventListener('input', () => {
+                    if (phoneField.validity.patternMismatch) {
+                        phoneField.setCustomValidity('Use a valid phone number (10 to 15 digits, spaces and + allowed).');
+                    } else {
+                        phoneField.setCustomValidity('');
+                    }
+                });
+            });
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -270,7 +281,7 @@
                     });
 
                     if (response.ok) {
-                        this.handleSuccess(form, submitBtn, successMsg, originalText, inputs);
+                        this.handleSuccess(form, submitBtn, successMsg, originalText, inputs, successRedirect);
                     } else {
                         throw new Error('We could not submit your booking right now. Please review your details and try again.');
                     }
@@ -394,7 +405,7 @@
             inputs.forEach(input => input.disabled = isLoading);
         },
 
-        handleSuccess(form, btn, successMsg, originalText, inputs) {
+        handleSuccess(form, btn, successMsg, originalText, inputs, successRedirect) {
             Utils.vibrate([20, 100, 20]);
             this.clearErrors(form);
 
@@ -409,6 +420,10 @@
                 btn.textContent = '✓ Booking Sent!';
                 btn.style.background = 'var(--success)';
             }
+
+            setTimeout(() => {
+                window.location.href = successRedirect;
+            }, 900);
 
             setTimeout(() => {
                 inputs.forEach(input => input.disabled = false);
